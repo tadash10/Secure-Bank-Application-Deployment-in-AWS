@@ -1,0 +1,129 @@
+10-Day Task Agenda for Cloud Pentesting Project
+Day 1: Project Kickoff and Initial Setup
+
+    1.1 Project Kickoff Meeting (1 hour)
+        Review project goals, scope, and deliverables.
+        Assign roles and responsibilities.
+
+    1.2 Environment Setup (2 hours)
+        Ensure access to the AWS environment and relevant tools.
+        Verify that all necessary permissions and credentials are in place.
+
+    1.3 Documentation Review (2 hours)
+        Review existing architecture documentation.
+        Gather information on current security configurations and deployment details.
+
+    1.4 Initial Assessment Planning (1 hour)
+        Outline the assessment approach and create a detailed plan.
+
+Day 2: EC2 and Database Security Assessment
+
+    2.1 Review EC2 Instances (2 hours)
+        Verify segregation of web and application servers.
+        Assess the use of Spot Instances versus On-Demand/Reserved Instances.
+
+    2.2 Database Security Check (2 hours)
+        Ensure encryption at rest is enabled for RDS.
+        Verify that database ports are not publicly accessible.
+
+    2.3 Document Findings and Next Steps (1 hour)
+        Document initial findings and plan further actions if needed.
+
+Day 3: Auto-Scaling and Load Balancing Review
+
+    3.1 Auto-Scaling Policies (2 hours)
+        Review and validate scaling policies and thresholds.
+
+    3.2 Elastic Load Balancer (ELB) Configuration (2 hours)
+        Ensure HTTPS listeners and backend authentication are configured.
+        Review Web Application Firewall (WAF) rules.
+
+    3.3 Document Findings and Prepare for Application Deployment Review (1 hour)
+        Document findings and prepare for application deployment assessment.
+
+Day 4: Application Deployment Review
+
+    4.1 CI/CD Pipeline Security (3 hours)
+        Assess integration of SAST and DAST tools in the CI/CD pipeline.
+        Review automated security testing results and remediation practices.
+
+    4.2 Document Findings and Plan Vulnerability Assessment (2 hours)
+        Document CI/CD pipeline security findings.
+        Prepare for the upcoming vulnerability assessment phase.
+
+Day 5: VPC and IAM Configuration Review
+
+    5.1 VPC Configuration (2 hours)
+        Review private subnets and security group configurations.
+        Verify Network ACLs settings.
+
+    5.2 IAM Roles and Policies (2 hours)
+        Assess role permissions and IAM policies.
+        Review access key management practices.
+
+    5.3 S3 Bucket Policies (1 hour)
+        Verify bucket policies and S3 Block Public Access settings.
+        Ensure data encryption practices.
+
+    5.4 Document Findings (1 hour)
+        Document findings and identify any areas needing remediation.
+
+Day 6: Vulnerability Assessment – Static and Dynamic Analysis
+
+    6.1 Static Application Security Testing (SAST) (2 hours)
+        Review results of SAST scans integrated into the CI/CD pipeline.
+
+    6.2 Dynamic Application Security Testing (DAST) (2 hours)
+        Review results of DAST scans and address any vulnerabilities found.
+
+    6.3 Penetration Testing Preparation (1 hour)
+        Plan for penetration testing, including scope and methodologies.
+
+Day 7: Penetration Testing
+
+    7.1 Network Layer Testing (3 hours)
+        Conduct penetration testing on network components (e.g., VPC, EC2).
+
+    7.2 Application Layer Testing (3 hours)
+        Perform penetration testing on web applications and APIs.
+
+    7.3 Document Initial Penetration Testing Findings (1 hour)
+        Document initial findings and any immediate remediation actions needed.
+
+Day 8: Patch Management and Remediation
+
+    8.1 Review Patch Management Process (2 hours)
+        Assess patch management practices and ensure compliance with update policies.
+
+    8.2 Implement Remediation Actions (2 hours)
+        Address and remediate any vulnerabilities identified during testing.
+
+    8.3 Validate Fixes and Re-test (2 hours)
+        Re-test to ensure that remediation actions have been effective.
+
+Day 9: Logging, Monitoring, and Reporting
+
+    9.1 Review Logging and Monitoring (2 hours)
+        Ensure CloudTrail and CloudWatch configurations are in place.
+        Verify integration with SIEM systems.
+
+    9.2 Prepare Final Report (3 hours)
+        Compile findings from all assessments.
+        Document risks, mitigation steps, and recommendations.
+
+    9.3 Review and Finalize Report (1 hour)
+        Review the report for accuracy and completeness.
+
+Day 10: Presentation and Follow-Up
+
+    10.1 Final Review Meeting (2 hours)
+        Present findings and report to stakeholders.
+        Discuss remediation strategies and next steps.
+
+    10.2 Finalize Documentation and Project Closure (2 hours)
+        Finalize all project documentation.
+        Close the project and hand over all deliverables.
+
+Total Estimated Hours: 46 hours
+
+This schedule balances the various phases of the pentesting project, from initial setup and assessments to penetration testing and reporting, ensuring a comprehensive review within the given timeframe. Adjustments can be made based on specific project needs or team availability.
