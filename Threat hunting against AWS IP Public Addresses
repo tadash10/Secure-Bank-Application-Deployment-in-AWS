@@ -1,0 +1,72 @@
+ Threat hunting against AWS IP Public Addresses
+ security
+
+Our org recently purchased a shodan membership as a way to threat hunt against publicly available IP addresses. I wanted to find a way to automate scanning of our AWS public IPs since our instances are ephemeral.
+
+Thought I would share how I am tackling it and see if there are other approaches out there.
+
+For testing I setup an account with 4 EC2 instances and a couple of elastic IPs. Using Steampipe (steampipe.io) i was able to query a list of instances with public IP addresses:
+
+$ steampipe query
+
+> select
+    title,
+    instance_id,
+    public_ip_address
+  from
+    aws_ec2_instance
+  where
+    public_ip_address is not null;
+
++---------------------+---------------------+-------------------+
+| title               | instance_id         | public_ip_address |
++---------------------+---------------------+-------------------+
+| Redhat 8 Test       | i-0dc60dd191cb84239 | 18.42.93.136      |
+| Amazon Linux 2 Test | i-042a51a815773780d | 3.42.239.34       |
+| Ubuntu 20 Test      | i-00cf426db9b8a58b6 | 18.42.239.46      |
+| Ubuntu 18 Test      | i-0e97f373db42dfa3f | 3.42.94.153       |
++---------------------+---------------------+-------------------+
+
+Then, after installing the Shodan plugin for Steampipe, i was able to join that data against scans and searches for those host IPs:
+
+$ steampipe plugin install shodan
+
+> select
+    instance_id,
+    ports,
+    vulns
+  from
+    aws_ec2_instance
+  left join
+    shodan_host on public_ip_address = ip
+  where
+    public_ip_address is not null;
+
++---------------------+----------+--------------------+
+| instance_id         | ports    | vulns              |
++---------------------+----------+--------------------+
+| i-0dc60dd191cb84239 | <null>   | <null>             |
+| i-042a51a815773780d | [80,22]  | <null>             |
+| i-00cf426db9b8a58b6 | [22]     | <null>             |
+| i-0e97f373db42dfa3f | [22,111] | ["CVE-2018-15919"] |
++---------------------+----------+--------------------+
+ Similar approach for elastic IPs:
+
+> select
+    allocation_id,
+    public_ip,
+    ports
+  from
+    aws_vpc_eip
+  left join
+    shodan_host on public_ip = ip;
+
++----------------------------+---------------+----------+
+| allocation_id              | public_ip     | ports    |
++----------------------------+---------------+----------+
+| eipalloc-0f9ae42acece4855f | 3.42.34.26    | [80,443] |
+| eipalloc-0268097c2fea42da2 | 18.42.215.212 | [22,53]  |
++----------------------------+---------------+----------+
+
+Hopefully that is helpful to some folks
+
